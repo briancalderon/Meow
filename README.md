@@ -62,10 +62,22 @@ See more [examples](http://zacstewart.github.com/Meow/).
     <td>Determines whether the meow will have a close (&times;) button. If <code>false</code>, yout must rely on the duration timeout to remove the meow.</td>
   </tr>
   <tr>
+    <td>closeOnClick</td>
+    <td>Boolean</td>
+    <td>true</td>
+    <td>Set to <code>false</code> to stop the meow from closing when clicked. By default, the meow will close when a click callback is called.</td>
+  </tr>
+  <tr>
     <td>container</td>
     <td>String</td>
     <td>null</td>
     <td>Sets the root element the meow should be contained within. Be default, meows will be put in an auto-generated container.</td>
+  </tr>
+  <tr>
+    <td>onInnerClick</td>
+    <td>Function</td>
+    <td>null</td>
+    <td>Callback when Meow is clicked.</td>
   </tr>
   <tr>
     <td>beforeCreateFirst</td>
