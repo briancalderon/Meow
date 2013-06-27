@@ -28,6 +28,7 @@
 
       this.timestamp = new Date().getTime();  // used to identify this meow and timeout
       this.hovered = false;                   // whether mouse is over or not
+      this.overClose = false;                 // whether mouse is over or not
 
       if (typeof default_meow_area === 'undefined'
           && typeof options.container === 'undefined') {
@@ -135,6 +136,31 @@
           that.manifest.addClass('hover');
         }
       });
+      
+      
+      // Determine if the mouse is on top of the close button.
+  		this.manifest.find('.close').bind('mouseenter mouseleave', function (event) {
+				if (event.type === 'mouseleave') {
+					that.overClose = false;
+				} else {
+					that.overClose = true;
+				}
+			});
+      
+      // Handle Click function and callback
+			this.manifest.bind('click', function (event) {
+				if (that.overClose === false) {
+					if (typeof options.onInnerClick === 'function') {
+						options.onInnerClick.call(that.manifest);
+					}
+          // Handle closing upon click
+					if (options.closeable !== false) {
+						if (options.closeOnClick !== true) {
+							that.destroy();
+						}
+					}
+				}
+			});
 
       // Add a timeout if the duration isn't Infinity
       if (this.duration !== Infinity) {
